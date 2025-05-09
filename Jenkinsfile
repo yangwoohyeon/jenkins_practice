@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "yangwoohyeon/jenkins-practice"
-        DEPLOY_HOST = "ec2-user@<EC2-2-IP>"
+        DEPLOY_HOST = "ec2-user@3.36.104.109"
+
     }
 
     stages {
