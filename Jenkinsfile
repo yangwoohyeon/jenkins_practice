@@ -5,6 +5,9 @@ pipeline {
         DOCKER_IMAGE = "yangwoohyeon/jenkins-practice"
         DEPLOY_HOST = "ec2-user@<EC2-2-IP>"
     }
+
+    stages {
+
         stage('Build') {
             steps {
                 sh './gradlew clean build -x test'
@@ -40,5 +43,6 @@ pipeline {
                 }
             }
         }
+
     }
 }
