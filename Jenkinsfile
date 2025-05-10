@@ -33,14 +33,11 @@ pipeline {
         stage('Deploy to EC2-2') {
             steps {
                 sshagent(['ec2-key']) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no $DEPLOY_HOST << EOF
-                    docker pull $DOCKER_IMAGE
-                    cd ~/deploy
-                    docker-compose down
-                    docker-compose up -d
-                    EOF
-                    '''
+                   sh """
+                                           ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "docker pull $DOCKER_IMAGE"
+                                           ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "cd ~/deploy && docker-compose down"
+                                           ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "cd ~/deploy && docker-compose up -d"
+                                       """
                 }
             }
         }
